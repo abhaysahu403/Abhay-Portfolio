@@ -9,7 +9,7 @@ export const personalInfo = {
   linkedin: "https://www.linkedin.com/in/abhay-sahu-222226232/",
   leetcode: "https://leetcode.com/u/Abhay_Sahu_Cse/",
   twitter: "https://x.com/SahuAbhay93",
-  resumeUrl: "#", // Replace with your actual resume URL
+  resumeUrl: "/Abhay_Sahu_Resume.pdf",
 };
 
 export const projects = [

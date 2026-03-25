@@ -142,7 +142,7 @@ export default function Hero() {
                 View Projects
                 <ArrowDown size={14} />
               </a>
-              <a href={personalInfo.resumeUrl} className="btn-outline flex items-center gap-2" target="_blank" rel="noopener noreferrer">
+              <a href={personalInfo.resumeUrl} download={personalInfo.resumeUrl} className="btn-outline flex items-center gap-2" target="_blank" rel="noopener noreferrer">
                 <Download size={14} />
                 Resume
               </a>
