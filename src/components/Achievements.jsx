@@ -23,8 +23,8 @@ export default function Achievements() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <p className="section-subtitle">// proof of work</p>
-          <h2 className="section-title">Achievements</h2>
+          <p className="section-subtitle">// proof of work </p>
+          <h2 className="section-title">Achievements.</h2>
         </motion.div>
 
         {/* Achievements grid */}
