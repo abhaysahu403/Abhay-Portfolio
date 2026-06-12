@@ -43,22 +43,28 @@ export default function AIChat() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
+      // Use proxy endpoint (works in dev and production)
+      const apiUrl = import.meta.env.DEV 
+        ? 'http://localhost:5173/api/chat'
+        : '/api/chat';
+
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-api-key': 'sk-ant-api03-AQ.Ab8RN6IPg7mp7f9HEVTdgoWbqHqw85UtEmX5sE4BntFxCEW7RA',
-          'anthropic-version': '2023-06-01',
         },
         body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 1000,
           system: aiChatContext,
           messages: newMessages.map(m => ({ role: m.role, content: m.content })),
         }),
       });
 
       const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.message || 'API request failed');
+      }
+      
       const reply = data.content?.[0]?.text || "Sorry, I couldn't fetch a response right now.";
       setMessages(prev => [...prev, { role: 'assistant', content: reply }]);
     } catch (err) {

@@ -28,19 +28,21 @@ A modern, interactive portfolio website for Abhay Sahu — a Backend Engineer & 
 
 - Node.js 18+
 - npm or yarn
+- Anthropic API key (for AI chat feature)
 
 ### Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/abhaysahu-cse/abhay-portfolio.git
-cd abhay-portfolio
+git clone https://github.com/abhaysahu403/Abhay-Portfolio.git
+cd Abhay-Portfolio
 
 # Install dependencies
 npm install
 
-# Start development server
-npm run dev
+# Set up environment variables
+# Copy .env.example to .env and add your Anthropic API key
+# The API key is only needed for the AI chat feature
 ```
 
 ### Build for Production
@@ -56,6 +58,17 @@ The built files will be in the `dist` folder.
 ```bash
 npm run preview
 ```
+
+### Deploy to Vercel
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/abhaysahu403/Abhay-Portfolio)
+
+1. Click the deploy button above or go to [Vercel](https://vercel.com)
+2. Import your repository
+3. Add environment variable: `ANTHROPIC_API_KEY` with your API key
+4. Deploy!
+
+**Note:** The AI chat feature requires the `ANTHROPIC_API_KEY` environment variable to be set in your Vercel project settings.
 
 ## 📁 Project Structure
 
