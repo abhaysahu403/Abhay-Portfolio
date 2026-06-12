@@ -28,7 +28,6 @@ A modern, interactive portfolio website for Abhay Sahu — a Backend Engineer & 
 
 - Node.js 18+
 - npm or yarn
-- Anthropic API key (for AI chat feature)
 
 ### Installation
 
@@ -40,12 +39,8 @@ cd Abhay-Portfolio
 # Install dependencies
 npm install
 
-# Start development server with API proxy
-npm run dev:all
-
-# OR run separately:
-# Terminal 1: npm run dev      (Vite dev server)
-# Terminal 2: npm run dev:api  (API proxy server)
+# Start development server
+npm run dev
 ```
 
 ### Build for Production
@@ -68,10 +63,9 @@ npm run preview
 
 1. Click the deploy button above or go to [Vercel](https://vercel.com)
 2. Import your repository
-3. Add environment variable: `ANTHROPIC_API_KEY` with your API key
-4. Deploy!
+3. Deploy!
 
-**Note:** The AI chat feature requires the `ANTHROPIC_API_KEY` environment variable to be set in your Vercel project settings.
+The AI chat works out of the box using Google's Gemini 2.0 Flash API.
 
 ## 📁 Project Structure
 

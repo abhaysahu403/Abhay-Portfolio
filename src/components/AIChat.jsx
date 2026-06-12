@@ -43,24 +43,41 @@ export default function AIChat() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost:3001/api/chat', {
+      // Use Gemini 2.5 Flash API directly (no CORS issues)
+      const GEMINI_API_KEY = 'AQ.Ab8RN6LKquNvmJ8wX9PGgIJy4B_HxvIe9b41L2mA3XGBCDCha';
+      const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${GEMINI_API_KEY}`;
+
+      // Build conversation history for Gemini
+      const conversationHistory = newMessages.slice(1).map(m => ({
+        role: m.role === 'assistant' ? 'model' : 'user',
+        parts: [{ text: m.content }]
+      }));
+
+      const response = await fetch(API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          system: aiChatContext,
-          messages: newMessages.map(m => ({ role: m.role, content: m.content })),
+          contents: conversationHistory,
+          systemInstruction: {
+            parts: [{ text: aiChatContext }]
+          },
+          generationConfig: {
+            temperature: 0.7,
+            maxOutputTokens: 800,
+          }
         }),
       });
 
       const data = await response.json();
       
       if (!response.ok) {
-        throw new Error(data.message || 'API request failed');
+        throw new Error(data.error?.message || 'API request failed');
       }
       
-      const reply = data.content?.[0]?.text || "Sorry, I couldn't fetch a response right now.";
+      const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 
+                    "Sorry, I couldn't fetch a response right now.";
       setMessages(prev => [...prev, { role: 'assistant', content: reply }]);
     } catch (err) {
       console.error('API Error:', err);
