@@ -40,9 +40,12 @@ cd Abhay-Portfolio
 # Install dependencies
 npm install
 
-# Set up environment variables
-# Copy .env.example to .env and add your Anthropic API key
-# The API key is only needed for the AI chat feature
+# Start development server with API proxy
+npm run dev:all
+
+# OR run separately:
+# Terminal 1: npm run dev      (Vite dev server)
+# Terminal 2: npm run dev:api  (API proxy server)
 ```
 
 ### Build for Production

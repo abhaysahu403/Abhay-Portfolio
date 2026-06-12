@@ -43,12 +43,7 @@ export default function AIChat() {
     setIsLoading(true);
 
     try {
-      // Use proxy endpoint (works in dev and production)
-      const apiUrl = import.meta.env.DEV 
-        ? 'http://localhost:5173/api/chat'
-        : '/api/chat';
-
-      const response = await fetch(apiUrl, {
+      const response = await fetch('http://localhost:3001/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -68,6 +63,7 @@ export default function AIChat() {
       const reply = data.content?.[0]?.text || "Sorry, I couldn't fetch a response right now.";
       setMessages(prev => [...prev, { role: 'assistant', content: reply }]);
     } catch (err) {
+      console.error('API Error:', err);
       setMessages(prev => [...prev, {
         role: 'assistant',
         content: "I'm having trouble connecting right now. Reach out directly at abhaysahucse@gmail.com!"
